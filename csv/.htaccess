@@ -1,1 +1,1 @@
-﻿Deny from all
+﻿<Files “associations.csv”> deny from all </Files>
