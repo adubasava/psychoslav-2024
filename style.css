@@ -256,6 +256,10 @@ footer a {
 }
 
 @media (max-width: 700px) {
+  .body {
+    font-size: 22px;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
@@ -280,7 +284,11 @@ footer a {
     width: 80%;
   }
 
+  .illustration img {
+    transition: 1s;
+  }
+
   .illustration img:hover {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
 }
