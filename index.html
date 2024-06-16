@@ -588,15 +588,21 @@ window.onclick = function(event) {
 randBtn.onclick = getData;
 
 async function getData() {
-    const response = await fetch('./csv/associations.csv');
-    const data = await response.text();    
-    const lines = data.split("\n");
-    const randLineNum = Math.floor(Math.random() * lines.length);
-    const arr = lines[randLineNum].split(";")
-    randDiv.innerHTML = `<b>Stimulus</b>: <span lang='be'>${arr[0].toLowerCase()}</span> (<i>${arr[5].trimEnd()}</i>) <br> <b>Associations</b>: <span lang='be'>${arr[1]}</span>${arr[2] ? ',' : ''} <span lang='be'>${arr[2] ? arr[2] : ''}</span>${arr[3] ? ',' : ''} <span lang='be'>${arr[3] ? arr[3] : ''}</span>`;   
+    try {
+        const response = await fetch('./csv/associations.csv');
+        const data = await response.text();    
+        const lines = data.split("\n");
+        const randLineNum = Math.floor(Math.random() * lines.length);
+        const arr = lines[randLineNum].split(";")
+        randDiv.innerHTML = `<b>Stimulus</b>: <span lang='be'>${arr[0].toLowerCase()}</span> (<i>${arr[5].trimEnd()}</i>) <br> <b>Associations</b>: <span lang='be'>${arr[1]}</span>${arr[2] ? ',' : ''} <span lang='be'>${arr[2] ? arr[2] : ''}</span>${arr[3] ? ',' : ''} <span lang='be'>${arr[3] ? arr[3] : ''}</span>`;   
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        randDiv.innerHTML = 'Oops... Error fetching data occured. Try again later';
+      }    
 }
 
 getData();
+
     </script>
   </body>
 </html>
