@@ -408,7 +408,7 @@
                 alt="Chart 3. The morphological connection between structure of noun-stimulus and its associations"
               />
             </div>
-            <p></p>
+            <p></p>            
             Some examples <b>with</b> morphological connection
             (stimulus-association): <br />
             <ul>
@@ -443,6 +443,11 @@
                 (<u>non-compounds</u>).
               </li>
             </ul>
+            <div class="random">
+                <h4>Data on random stimulus</h4>
+                <div id="randomAssoc"></div>
+                <button id="randomBtn">Another stimulus</button>
+            </div>
             <p>
               <b>Conclusion</b>.<br />
               <span class="confirmed">The working hypothesis was confirmed</span
@@ -563,6 +568,9 @@ const modal = document.getElementById("stimuliModal");
 const btn = document.getElementById("stimuliBtn");
 const span = document.getElementsByClassName("close")[0];
 
+const randBtn = document.getElementById("randomBtn");
+const randDiv = document.getElementById("randomAssoc");
+
 btn.onclick = function() {
   modal.style.display = "block";
 }
@@ -575,7 +583,20 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-} 
+}
+
+randBtn.onclick = getData;
+
+async function getData() {
+    const response = await fetch('./csv/associations.csv');
+    const data = await response.text();    
+    const lines = data.split("\n");
+    const randLineNum = Math.floor(Math.random() * lines.length);
+    const arr = lines[randLineNum].split(";")
+    randDiv.innerHTML = `<b>Stimulus</b>: <span lang='be'>${arr[0].toLowerCase()}</span> (<i>${arr[5].trimEnd()}</i>) <br> <b>Associations</b>: <span lang='be'>${arr[1]}</span>${arr[2] ? ',' : ''} <span lang='be'>${arr[2] ? arr[2] : ''}</span>${arr[3] ? ',' : ''} <span lang='be'>${arr[3] ? arr[3] : ''}</span>`;   
+}
+
+getData();
     </script>
   </body>
 </html>
