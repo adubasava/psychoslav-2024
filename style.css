@@ -38,6 +38,34 @@ header {
   font-size: smaller;
 }
 
+nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: rgb(232, 217, 245);
+  z-index: 1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+  height: 50px;
+}
+
+.nav-link {
+  font-size: 14px;
+  background-color: white;
+  padding: 5px 10px;
+  border: 0.5px solid rgb(208, 166, 248);
+  border-radius: 6px;
+  box-shadow: 1px 2px 2px grey;
+  font-family: "PT Sans", sans-serif;
+}
+
+div:target {
+  background-color: rgb(245, 241, 248);
+  outline: 1px solid rgb(246, 26, 231);
+}
+
 .container {
   background-color: gainsboro;
   margin: 20px;
@@ -148,7 +176,7 @@ ul li {
   padding: 0;
   margin: 0;
   display: inline;
-  background-color: white;
+  background-color: transparent;
   cursor: pointer;
 }
 
@@ -260,7 +288,8 @@ footer a {
 }
 
 .random {
-  background-color: rgb(220, 220, 220, 0.5);
+  background-color: white;
+  outline: 2px solid blueviolet;
   padding: 20px 20px;
   border-radius: 12px;
 }
@@ -274,6 +303,19 @@ footer a {
 @media (max-width: 700px) {
   .body {
     font-size: 22px;
+  }
+
+  nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-rows: 2;
+    gap: 10px;
+    height: fit-content;
+  }
+
+  .nav-link {
+    white-space: nowrap;
+    font-size: 14px;
   }
 
   .container {
